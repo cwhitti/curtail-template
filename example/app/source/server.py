@@ -2,7 +2,7 @@ import socketserver
 from RequestHandler import RequestHandler
 
 # Define the server address and port
-HOST, PORT = "127.0.0.1", 80
+HOST, PORT = "0.0.0.0", 80
 
 def server_loop():
 

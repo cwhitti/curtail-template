@@ -5,9 +5,10 @@ ARG WKG_DIR
 ARG PORT
 
 ENV DIR=$WKG_DIR
+ENV SERVERFILE=${SERVERFILE}
 
 RUN echo "\
-        SERVERFILE: ${SERVERFILE} \
+        #SERVERFILE: ${SERVERFILE} \
         WKG_DIR: ${WKG_DIR} \
         PORT: ${PORT} "
 
@@ -16,6 +17,7 @@ EXPOSE $PORT
 WORKDIR /app
 COPY /app/source .
 
-COPY /app/$WKG_DIR .
+COPY /app/$WKG_DIR/ .
 
-CMD sh ["python3", "$SERVERFILE"]
+#"$SERVERFILE"
+CMD python3 "/app/$SERVERFILE"
