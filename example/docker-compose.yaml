@@ -33,7 +33,7 @@ services:
       - envoy
       - curtdb:curtdb
     ports:
-      - "10081:80"
+      - "10081:80" # DEMOPORT
       - "4317:4317"
     restart: always
 
@@ -85,7 +85,7 @@ services:
         PORT: 80
     image: staging_curtail_template
     ports:
-      - 8008:80 # when running client, connect to DEMOPORT not this
+      - "8008:80" # when running client, connect to DEMOPORT not this
     #environment:
     networks:
       securenet:
@@ -100,7 +100,7 @@ services:
         PORT: 80
     image: dev_curtail_template
     ports:
-      - 8009:80
+      - "8009:80"
     #environment:
     networks: #specific to docker
       securenet:

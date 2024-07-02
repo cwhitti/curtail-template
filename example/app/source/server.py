@@ -8,5 +8,5 @@ def server_loop():
 
     # Create and start the server
     with socketserver.TCPServer((HOST, PORT), RequestHandler) as httpd:
-        print(f"Serving on port {PORT}...")
+        #print(f"Serving on port {PORT}...")
         httpd.serve_forever()
