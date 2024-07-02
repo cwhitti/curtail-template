@@ -1,23 +1,23 @@
 FROM python:3.12
 
-ARG SERVERFILE
-ARG WKG_DIR
-ARG PORT
+ARG SERVERFILE 
+ARG WKG_DIR 
+ARG PORT 
 
 ENV DIR=$WKG_DIR
 ENV SERVERFILE=${SERVERFILE}
 
 RUN echo "\
-        #SERVERFILE: ${SERVERFILE} \
+        SERVERFILE: ${SERVERFILE} \
         WKG_DIR: ${WKG_DIR} \
         PORT: ${PORT} "
 
 EXPOSE $PORT
 
 WORKDIR /app
-COPY /app/source .
+COPY app/source .
 
-COPY /app/$WKG_DIR/ .
+COPY app/$WKG_DIR/ .
 
-#"$SERVERFILE"
-CMD python3 "/app/$SERVERFILE"
+RUN echo "app/$SERVERFILE"
+CMD python3 "app/$SERVERFILE"
