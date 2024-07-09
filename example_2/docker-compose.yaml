@@ -78,7 +78,7 @@ services:
       context: .
       dockerfile: Dockerfile  
       args: # pass args to dockerfile
-        SERVERFILE: server.py       
+        SERVERFILE: run.py
         WKG_DIR: staging 
         PORT: 80                        
     image: staging_curtail_template
@@ -92,7 +92,7 @@ services:
       context: .
       dockerfile: Dockerfile       
       args: 
-        SERVERFILE: server.py         
+        SERVERFILE: run.py
         WKG_DIR: dev    
         PORT: 80
     image: dev_curtail_template
