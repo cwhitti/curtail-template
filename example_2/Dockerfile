@@ -7,21 +7,26 @@ ARG PORT
 ENV DIR=$WKG_DIR
 ENV SERVERFILE=${SERVERFILE}
 
-RUN echo "\
-        SERVERFILE: ${SERVERFILE} \
-        WKG_DIR: ${WKG_DIR} \
-        PORT: ${PORT} "
+RUN echo "Hello world!"
 
-EXPOSE $PORT
+RUN echo "SERVERFILE: ${SERVERFILE}"
+RUN echo "WKG_DIR: ${WKG_DIR}"
+RUN echo "PORT: ${PORT}"
+
+#EXPOSE $PORT
 
 # set the dir
 WORKDIR /app
 
-# Copy the requirements file into the container at /app
-#COPY requirements.txt ./app
-#RUN pip install -r /app/requirements.txt
+COPY app/source /app
+COPY app/${WKG_DIR} /app
 
-# confirm the run, may have to do /app/$SERVERFILE
-#RUN echo "$SERVERFILE" 
-#RUN echo "$ls)"
-#CMD python3 "$SERVERFILE"
+# Copy the requirements file into the container at /app
+COPY requirements.txt /app
+RUN pip install -r /app/requirements.txt
+
+# Debug to confirm the file is copied
+RUN ls -l /app
+
+# confirm the run
+CMD ["sh", "-c", "python3 $SERVERFILE"]

@@ -1,3 +1,6 @@
 **/__pycache__/
 example/app/source/RequestHandler.py
 example/app/source/RequestHandler.py
+**/private/
+**/AFRLpullpw
+**/azurelogin
