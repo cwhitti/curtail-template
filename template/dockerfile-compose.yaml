@@ -7,10 +7,10 @@ services:
   #              CURTAIL CONFIG                #
   # ///////////////////////////////////////////# 
 
-  curtail: # DO NOT CHANGE
+  curtail:
     environment:
       CURTAIL_PATH: '/home/curtail/private'
-      DATABASE_URL: 'postgres://postgres:3HGJI6hJclYleHhkra+qUg@curtdb/curtail'
+      DATABASE_URL: 'postgres://postgres:<your password>@curtdb/curtail' # CHANGE ME
       VCAP_SERVICES: '{}'
 #    image: registry.kube.curtailsecurity.com/curtail/regrade/curtail-sensor:master
     image: curtail.azurecr.io/curtail-sensor:latest
@@ -40,7 +40,7 @@ services:
     user: 0:0
     environment:
       CURTAIL_HTTPS_PORT: 4430
-      DATABASE_URL: 'postgres://postgres:3HGJI6hJclYleHhkra+qUg@curtdb/curtail'
+      DATABASE_URL: 'postgres://postgres:<your password>@curtdb/curtail' # CHANGE ME
       DOCKER_NETWORK: cloudflare_securenet
     volumes:
       - ./private:/home/curtail/private
@@ -54,10 +54,10 @@ services:
       - "18080:8080" 
     restart: always
 
-  curtdb: # DO NOT CHANGE
+  curtdb: 
     image: postgres:13.2
     environment:
-      POSTGRES_PASSWORD: 3HGJI6hJclYleHhkra+qUg
+      POSTGRES_PASSWORD: <your password>  # CHANGE ME
       POSTGRES_DB: curtail
     ports:
       - "5434:5432"
@@ -76,11 +76,11 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: <your dockerfile>
+      dockerfile: <your dockerfile>       # CHANGE ME
       args: # pass args to dockerfile
-        SERVERFILE: <your server>
-        WKG_DIR: <your staging directory>
-        PORT: 80
+        SERVERFILE: <your server>         # CHANGE ME
+        WKG_DIR: <your staging directory> # CHANGE ME
+        PORT: 80                          # CHANGE ME
     image: staging_curtail_template
     ports:
       - 8008:80 # when running client, connect to DEMOPORT not this
@@ -90,10 +90,10 @@ services:
   envoy:
     build:
       context: .
-      dockerfile: <your dockerfile>
-      args:
-        SERVERFILE: <your server>
-        WKG_DIR: <your dev directory>
+      dockerfile: <your dockerfile>       # CHANGE ME
+      args: 
+        SERVERFILE: <your server>         # CHANGE ME
+        WKG_DIR: <your dev directory>     # CHANGE ME
         PORT: 80
     image: dev_curtail_template
     ports:
