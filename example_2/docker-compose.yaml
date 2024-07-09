@@ -31,7 +31,7 @@ services:
       - envoy
       - curtdb:curtdb
     ports:
-      - "10081:80"
+      - "10081:80" 
       - "4317:4317"
     restart: always
 
