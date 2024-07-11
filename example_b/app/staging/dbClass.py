@@ -152,19 +152,20 @@ class DataBase:
             self._conn.executescript( query ) # SECURITY ISSUE: BUGGY!
         
         # catches integrity error
+            # catches integrity error
         except sqlite3.IntegrityError as e:
             print(f"Integrity error: {e}")
-            return False
+            return None
         
         # catches operational
         except sqlite3.OperationalError as e:
-            print(f"Operational error: {e}")
-            return False
+            print(f"(!) (!) (!) Operational error: {e} (!) (!) (!)")
+            return None
         
         # catches database error
         except sqlite3.DatabaseError as e:
-            print(f"Database error: {e}")
-            return False
+            print(f"(!) (!) (!) Database error: {e} (!) (!) (!)")
+            return None
         
         # Catches any other unexpected errors
         except Exception as e:

@@ -59,17 +59,17 @@ class DataBase:
             
             # catches operational
             except sqlite3.OperationalError as e:
-                print(f"Operational error: {e}")
+                print(f"(!) (!) (!) Operational error: {e} (!) (!) (!)")
                 return None
             
             # catches database error
             except sqlite3.DatabaseError as e:
-                print(f"Database error: {e}")
+                print(f"(!) (!) (!) Database error: {e} (!) (!) (!)")
                 return None
             
             # Catches any other unexpected errors
             except Exception as e:
-                print(f"An unexpected error occurred: {e}")
+                print(f"(!) (!) (!) An unexpected error occurred: {e} (!) (!) (!)")
                 return None
         
         # return none
