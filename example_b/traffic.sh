@@ -8,9 +8,9 @@
 # curl -X POST -d "Type_1=Water&ID=67" 0:80/search
 
 TYPES=("Bug" "Dragon" "Electric" "Fighting" "Fire" "Flying" "Ghost" "Grass" "Ground" "Ice" "Normal" "Poison" "Psychic" "Rock" "Water")
-SERVER="127.0.0.1:8009"
+SERVER="127.0.0.1:8008"
 ENDPOINT="search"
-TRAFFIC=25
+TRAFFIC=1
 
 function main() {
     # Loop to generate traffic
@@ -19,7 +19,7 @@ function main() {
         #attack=$(( RANDOM % 2 ))
         type_1=$(( RANDOM % 2 ))
         type_2=$(( RANDOM % 2 ))
-        attack=0
+        attack=$(( RANDOM % 2 ))
         # type_1=1
         # type_2=0
 
