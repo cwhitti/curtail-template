@@ -29,13 +29,13 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
         self._serve_html(response, title, body)
 
     def _handle_multiply(self):
-        num1 = random.randint(1, 1000000)
-        num2 = random.randint(1, 1000000)
-        result = int(num1 * num2)
 
         response = 200
-        title = "Multiply"
-        body = f"<h1>Multiply</h1><p>The result of {num1} * {num2} is {result}.</p>"
+        length = random.randint(70, 10000000)
+        title = "Str Multiplier"
+
+        mystr = int( '2' + '0' * length ) 
+        body = f"<h1>Result</h1><p>Generated Length: {length}\nString:{mystr}.</p>"
         self._serve_html(response, title, body)
 
     def _handle_test(self):
