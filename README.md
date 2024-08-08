@@ -82,6 +82,8 @@ Take down the containers by using `docker compose down`.
 
 Docker will cache any dependent files not explicitly mentioned in the docker-compile.yaml file. If you make changes to any files not in compose, you will have to force a new build with `docker compose up --build`.
 
+You can see inside of the container by using `docker exec -it {CONTAINER ID} bash`.
+
 # Examples
 I have provided three examples in this repository that help showcase how to connect with ReGrade. Each example is built with an api "wrapper" which can ReGrade can communicate with. The API then can connect to a pre-existing application.
 
