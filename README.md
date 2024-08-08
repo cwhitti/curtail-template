@@ -31,7 +31,7 @@ In this repository, I will explain the moving parts of the tool and its initial 
 | dockerfile-compose.yaml| Establishes 5 containers: the ReGrade sensor, the ReGrade UI, the ReGrade database, the staging environment, and the dev environment | Yes | 
 | Dockerfile             | Builds the staging and dev containers with the appropriate files.  | Yes |
 | config.json            | Holds the settings for the ReGrade UI and most importantly the product key.  | Yes |
-| server.xxx             | A general (or specialized) server which serves various endpoints that ReGrade can send traffic to. | Yes |
+| server.py             | A general (or specialized) server which serves various endpoints that ReGrade can send traffic to. | Yes |
 | traffic.sh             | Can be used to automate the process of sending traffic.  |  No |
 | urls.sh                | Can be used to detect the IP:port of the sensor and UI.  |  No |
 | run.py                 | Can be used by the Dockerfile to easily run the server upon starting the custom containers. Any language! |  No |
@@ -77,3 +77,22 @@ port `PORT`, and executable `SERVERFILE`.
   * _Note that the port argument should match the internal mapping._
 
 ## Compiling Containers
+Once your application has been integrated, you can now run all of the containers using `docker compose up`.
+Take down the containers by using `docker compose down`.
+
+Docker will cache any dependent files not explicitly mentioned in the docker-compile.yaml file. If you make changes to any files not in compose, you will have to force a new build with `docker compose up --build`.
+
+# Examples
+I have provided three examples in this repository that help showcase how to connect with ReGrade. Each example is built with an api "wrapper" which can ReGrade can communicate with. The API then can connect to a pre-existing application.
+
+## Example A
+A basic server setup with no intersting app connected to it. This was my first test to see if I could even get ReGrade to connect to any API.
+
+## Examble B
+Showcases how you could monitor SQL queries and use ReGrade to monitor a new patch. The API connects to a custom application which fetches and retrieves data. All traffic is controlled in traffic.sh which simulates grabbing data. 
+
+The dbClass.py handles SQL commands and has two versions: secure (dev), and insecure. The secure version protects against an injection attack, the insecure version does not and will drop the SQL table on accident.
+
+## Example C
+Showcases how you could test a new release of an open-source or public tool. In this example, both codebases are the same, but one runs on python3.9.4 and the other runs on python3.12. The earlier version contains a bug that has been fixed in later versions. See: https://www.youtube.com/watch?v=lIniq12cMK0
+
