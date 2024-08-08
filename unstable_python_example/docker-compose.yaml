@@ -31,8 +31,8 @@ services:
       - envoy
       - curtdb:curtdb
     ports:
-      - "10081:80"  # Port that ReGrade Sensor listens on
-      - "4317:4317" # Was not able to figure this
+      - "10081:80"
+      - "4317:4317"
     restart: always
 
   curtui: 
@@ -50,7 +50,7 @@ services:
         aliases:
           - curtui
     ports:
-      - "14430:4430" # Connect to this if you want to see the UI for the sensor
+      - "14430:4430"
       - "18080:8080" 
     restart: always
 
@@ -73,32 +73,32 @@ services:
   #                AFRL CONFIG                 #
   # ///////////////////////////////////////////# 
 
-  nginx: # Container 1
+  nginx: # Container #1
     build:
       context: .
-      dockerfile: <your dockerfile>       # CHANGE ME
+      dockerfile: Dockerfile3.9      
       args: # pass args to dockerfile
-        SERVERFILE: <your server>         # CHANGE ME
-        WKG_DIR: <your staging directory> # CHANGE ME
-        PORT: 80                          # CHANGE ME
+        SERVERFILE: run.py         
+        WKG_DIR: staging 
+        PORT: 80                          
     image: staging_curtail_template
     ports:
       - 8008:80 # when running client, connect to DEMOPORT not this
     networks:
       securenet:
 
-  envoy: # Container 2
+  envoy: # Container #2
     build:
       context: .
-      dockerfile: <your dockerfile>       # CHANGE ME
+      dockerfile: Dockerfile3.12       
       args: 
-        SERVERFILE: <your server>         # CHANGE ME
-        WKG_DIR: <your dev directory>     # CHANGE ME
+        SERVERFILE: run.py        
+        WKG_DIR: dev     
         PORT: 80
     image: dev_curtail_template
     ports:
-      - 8009:80 # same port as above
-    networks: #specific to docker
+      - 8009:80 
+    networks: 
       securenet:
 
 networks:
